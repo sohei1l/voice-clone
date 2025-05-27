@@ -2,6 +2,8 @@
 
 Lightweight C++ voice cloning CLI that creates personalized text-to-speech from a 30-second recording.
 
+Fast, compact, and optimized for real-time synthesis with < 15MB binary size.
+
 ## Features
 
 - **Record**: Capture high-quality voice samples from microphone

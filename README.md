@@ -17,8 +17,8 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 # Extract mel-spectrograms and F0 features
 ./echotwin featurize [input.wav]
 
-# Train voice model (coming soon)
-./echotwin train
+# Train compact voice model from features
+./echotwin train [mel.npy] [f0.npy] [voice.vec]
 
 # Generate speech (coming soon)
 ./echotwin say "Hello world"
@@ -38,3 +38,4 @@ make
 - PortAudio
 - libsndfile
 - Eigen3
+- ONNX Runtime

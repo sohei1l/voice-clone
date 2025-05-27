@@ -11,21 +11,35 @@ pkg_check_modules(SNDFILE REQUIRED sndfile)
 
 find_package(Eigen3 REQUIRED)
 
+# ONNX Runtime
+find_library(ONNXRUNTIME_LIB onnxruntime HINTS /usr/local/lib /opt/homebrew/lib)
+if(NOT ONNXRUNTIME_LIB)
+    message(FATAL_ERROR "ONNX Runtime library not found")
+endif()
+
+find_path(ONNXRUNTIME_INCLUDE onnxruntime_cxx_api.h HINTS /usr/local/include /opt/homebrew/include)
+if(NOT ONNXRUNTIME_INCLUDE)
+    message(FATAL_ERROR "ONNX Runtime headers not found")
+endif()
+
 add_executable(echotwin 
     src/main.cpp
     src/audio_recorder.cpp
     src/feature_extractor.cpp
+    src/voice_trainer.cpp
 )
 
 target_include_directories(echotwin PRIVATE 
     ${PORTAUDIO_INCLUDE_DIRS}
     ${SNDFILE_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIR}
+    ${ONNXRUNTIME_INCLUDE}
 )
 
 target_link_libraries(echotwin 
     ${PORTAUDIO_LIBRARIES}
     ${SNDFILE_LIBRARIES}
+    ${ONNXRUNTIME_LIB}
 )
 
 target_compile_options(echotwin PRIVATE 

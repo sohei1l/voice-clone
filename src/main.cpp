@@ -3,6 +3,7 @@
 #include <vector>
 #include "audio_recorder.h"
 #include "feature_extractor.h"
+#include "voice_trainer.h"
 
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
@@ -60,8 +61,23 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     } else if (command == "train") {
-        std::cout << "Training functionality not yet implemented\n";
-        return 1;
+        std::string melFile = "mel_features.npy";
+        std::string f0File = "f0_features.npy";
+        std::string outputFile = "voice.vec";
+        
+        if (argc >= 3) melFile = argv[2];
+        if (argc >= 4) f0File = argv[3];
+        if (argc >= 5) outputFile = argv[4];
+        
+        std::cout << "Training voice encoder..." << std::endl;
+        
+        if (VoiceTrainer::trainEncoder(melFile, f0File, outputFile)) {
+            std::cout << "Training completed successfully\n";
+            return 0;
+        } else {
+            std::cout << "Training failed\n";
+            return 1;
+        }
     } else if (command == "say") {
         if (argc < 3) {
             std::cout << "Error: Please provide text to synthesize\n";

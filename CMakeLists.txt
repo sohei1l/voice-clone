@@ -47,3 +47,18 @@ target_compile_options(echotwin PRIVATE
     ${PORTAUDIO_CFLAGS_OTHER}
     ${SNDFILE_CFLAGS_OTHER}
 )
+
+# Static linking options for release builds
+option(STATIC_BUILD "Build with static linking" OFF)
+
+if(STATIC_BUILD)
+    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+    set_target_properties(echotwin PROPERTIES LINK_SEARCH_START_STATIC 1)
+    set_target_properties(echotwin PROPERTIES LINK_SEARCH_END_STATIC 1)
+endif()
+
+# Cross-platform presets
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    target_compile_options(echotwin PRIVATE -O3 -march=native)
+    set_target_properties(echotwin PROPERTIES STRIP ON)
+endif()

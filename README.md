@@ -31,10 +31,24 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 
 ## Build
 
+### Quick Build
+```bash
+./scripts/build.sh
+```
+
+### Manual Build
 ```bash
 mkdir build && cd build
-cmake ..
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
+```
+
+### Cross-Platform Release
+```bash
+# Use CMake presets for optimized builds
+cmake --preset macos-release    # macOS universal binary
+cmake --preset linux-release    # Linux static binary  
+cmake --preset windows-release  # Windows executable
 ```
 
 ## Requirements

@@ -62,8 +62,27 @@ cmake --preset windows-release  # Windows executable
 
 ## Requirements
 
-- CMake 3.16+
-- PortAudio
-- libsndfile
-- Eigen3
-- ONNX Runtime
+- **CMake 3.16+**
+- **PortAudio** - Audio I/O
+- **libsndfile** - WAV file handling  
+- **Eigen3** - Linear algebra
+- **ONNX Runtime** - ML inference
+
+### Install Dependencies
+
+**macOS:**
+```bash
+brew install portaudio libsndfile eigen onnxruntime
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install libportaudio2-dev libsndfile1-dev libeigen3-dev
+# Download ONNX Runtime from GitHub releases
+```
+
+**Windows:**
+```bash
+# Use vcpkg or download libraries manually
+vcpkg install portaudio libsndfile eigen3 onnxruntime
+```

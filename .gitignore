@@ -1,4 +1,5 @@
 build/
+release/
 *.wav
 *.npy
 *.vec
@@ -7,3 +8,5 @@ build/
 echotwin
 .DS_Store
 *~
+.vscode/
+.idea/

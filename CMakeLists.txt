@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(echotwin VERSION 1.0.0)
+project(echotwin VERSION 1.0.0 DESCRIPTION "Lightweight C++ Voice Cloning CLI")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

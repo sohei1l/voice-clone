@@ -14,6 +14,7 @@ find_package(Eigen3 REQUIRED)
 add_executable(echotwin 
     src/main.cpp
     src/audio_recorder.cpp
+    src/feature_extractor.cpp
 )
 
 target_include_directories(echotwin PRIVATE 

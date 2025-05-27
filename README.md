@@ -14,8 +14,8 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 # Record 30-second voice sample
 ./echotwin record [output.wav]
 
-# Extract features (coming soon)
-./echotwin featurize
+# Extract mel-spectrograms and F0 features
+./echotwin featurize [input.wav]
 
 # Train voice model (coming soon)
 ./echotwin train

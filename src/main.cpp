@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "audio_recorder.h"
+#include "feature_extractor.h"
 
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
@@ -40,8 +41,24 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     } else if (command == "featurize") {
-        std::cout << "Feature extraction not yet implemented\n";
-        return 1;
+        std::string audioFile = "voice_sample.wav";
+        if (argc >= 3) {
+            audioFile = argv[2];
+        }
+        
+        std::cout << "Extracting features from: " << audioFile << std::endl;
+        
+        bool success = true;
+        success &= FeatureExtractor::extractMelSpectrogram(audioFile, "mel_features.npy");
+        success &= FeatureExtractor::extractF0(audioFile, "f0_features.npy");
+        
+        if (success) {
+            std::cout << "Feature extraction completed successfully\n";
+            return 0;
+        } else {
+            std::cout << "Feature extraction failed\n";
+            return 1;
+        }
     } else if (command == "train") {
         std::cout << "Training functionality not yet implemented\n";
         return 1;

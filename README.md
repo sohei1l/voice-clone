@@ -11,16 +11,16 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 ## Usage
 
 ```bash
-# Record voice sample
-./echotwin record
+# Record 30-second voice sample
+./echotwin record [output.wav]
 
-# Extract features  
+# Extract features (coming soon)
 ./echotwin featurize
 
-# Train voice model
+# Train voice model (coming soon)
 ./echotwin train
 
-# Generate speech
+# Generate speech (coming soon)
 ./echotwin say "Hello world"
 ```
 

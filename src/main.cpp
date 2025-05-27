@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "audio_recorder.h"
 
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
@@ -26,8 +27,18 @@ int main(int argc, char* argv[]) {
     }
 
     if (command == "record") {
-        std::cout << "Recording functionality not yet implemented\n";
-        return 1;
+        std::string outputFile = "voice_sample.wav";
+        if (argc >= 3) {
+            outputFile = argv[2];
+        }
+        
+        if (AudioRecorder::record(outputFile)) {
+            std::cout << "Recording completed successfully\n";
+            return 0;
+        } else {
+            std::cout << "Recording failed\n";
+            return 1;
+        }
     } else if (command == "featurize") {
         std::cout << "Feature extraction not yet implemented\n";
         return 1;

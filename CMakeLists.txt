@@ -11,7 +11,10 @@ pkg_check_modules(SNDFILE REQUIRED sndfile)
 
 find_package(Eigen3 REQUIRED)
 
-add_executable(echotwin src/main.cpp)
+add_executable(echotwin 
+    src/main.cpp
+    src/audio_recorder.cpp
+)
 
 target_include_directories(echotwin PRIVATE 
     ${PORTAUDIO_INCLUDE_DIRS}

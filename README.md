@@ -10,6 +10,13 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 - **Synthesize**: Convert any text to speech in cloned voice
 - **Export**: Save synthesized speech as WAV files for sharing
 
+## Quick Start
+
+```bash
+# Run the complete demo
+./examples/quickstart.sh
+```
+
 ## Usage
 
 ```bash

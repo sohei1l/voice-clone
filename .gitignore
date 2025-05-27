@@ -1,0 +1,9 @@
+build/
+*.wav
+*.npy
+*.vec
+*.o
+*.exe
+echotwin
+.DS_Store
+*~

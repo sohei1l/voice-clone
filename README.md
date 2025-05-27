@@ -4,9 +4,11 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 
 ## Features
 
-- **Record**: Capture high-quality voice samples
-- **Train**: Generate compact voice models
-- **Synthesize**: Convert text to speech in your voice
+- **Record**: Capture high-quality voice samples from microphone
+- **Extract**: Generate mel-spectrograms and F0 features  
+- **Train**: Create compact speaker-specific voice models
+- **Synthesize**: Convert any text to speech in cloned voice
+- **Export**: Save synthesized speech as WAV files for sharing
 
 ## Usage
 
@@ -22,6 +24,9 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 
 # Generate speech with cloned voice
 ./echotwin say "Hello world" [voice.vec] [output.wav]
+
+# Export WAV file for sharing
+./echotwin --export [voice.vec] "Your message" [output.wav]
 ```
 
 ## Build

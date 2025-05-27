@@ -9,11 +9,12 @@
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
     std::cout << "Usage:\n";
-    std::cout << "  echotwin record     - Record 30 seconds from microphone\n";
-    std::cout << "  echotwin featurize  - Extract features from audio\n";
-    std::cout << "  echotwin train      - Train voice model\n";
-    std::cout << "  echotwin say <text> - Synthesize speech\n";
-    std::cout << "  echotwin --help     - Show this help\n";
+    std::cout << "  echotwin record [output.wav]        - Record 30 seconds from microphone\n";
+    std::cout << "  echotwin featurize [input.wav]      - Extract features from audio\n";
+    std::cout << "  echotwin train [mel] [f0] [voice]   - Train voice model\n";
+    std::cout << "  echotwin say <text> [voice] [out]   - Synthesize speech\n";
+    std::cout << "  echotwin --export [voice] [text]    - Export WAV file\n";
+    std::cout << "  echotwin --help                     - Show this help\n";
 }
 
 int main(int argc, char* argv[]) {
@@ -27,6 +28,26 @@ int main(int argc, char* argv[]) {
     if (command == "--help" || command == "-h") {
         showUsage();
         return 0;
+    }
+
+    if (command == "--export") {
+        std::string voiceModel = "voice.vec";
+        std::string text = "Hello world";
+        std::string outputFile = "export.wav";
+        
+        if (argc >= 3) voiceModel = argv[2];
+        if (argc >= 4) text = argv[3];
+        if (argc >= 5) outputFile = argv[4];
+        
+        std::cout << "Exporting speech to WAV file..." << std::endl;
+        
+        if (SpeechSynthesizer::synthesize(text, voiceModel, outputFile)) {
+            std::cout << "Export completed: " << outputFile << std::endl;
+            return 0;
+        } else {
+            std::cout << "Export failed\n";
+            return 1;
+        }
     }
 
     if (command == "record") {

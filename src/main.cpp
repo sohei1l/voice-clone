@@ -1,10 +1,21 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 #include "audio_recorder.h"
 #include "feature_extractor.h"
 #include "voice_trainer.h"
 #include "speech_synthesizer.h"
+
+std::string getVersion() {
+    std::ifstream versionFile("VERSION");
+    std::string version = "unknown";
+    if (versionFile.is_open()) {
+        std::getline(versionFile, version);
+        versionFile.close();
+    }
+    return version;
+}
 
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
@@ -14,6 +25,7 @@ void showUsage() {
     std::cout << "  echotwin train [mel] [f0] [voice]   - Train voice model\n";
     std::cout << "  echotwin say <text> [voice] [out]   - Synthesize speech\n";
     std::cout << "  echotwin --export [voice] [text]    - Export WAV file\n";
+    std::cout << "  echotwin --version                   - Show version\n";
     std::cout << "  echotwin --help                     - Show this help\n";
 }
 
@@ -27,6 +39,11 @@ int main(int argc, char* argv[]) {
 
     if (command == "--help" || command == "-h") {
         showUsage();
+        return 0;
+    }
+
+    if (command == "--version" || command == "-v") {
+        std::cout << "echotwin version " << getVersion() << std::endl;
         return 0;
     }
 

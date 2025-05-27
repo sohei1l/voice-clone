@@ -4,6 +4,7 @@
 #include "audio_recorder.h"
 #include "feature_extractor.h"
 #include "voice_trainer.h"
+#include "speech_synthesizer.h"
 
 void showUsage() {
     std::cout << "echotwin - Lightweight Voice Cloning CLI\n\n";
@@ -83,8 +84,21 @@ int main(int argc, char* argv[]) {
             std::cout << "Error: Please provide text to synthesize\n";
             return 1;
         }
-        std::cout << "Speech synthesis not yet implemented\n";
-        return 1;
+        
+        std::string text = argv[2];
+        std::string voiceModel = "voice.vec";
+        std::string outputFile = "";
+        
+        if (argc >= 4) voiceModel = argv[3];
+        if (argc >= 5) outputFile = argv[4];
+        
+        if (SpeechSynthesizer::synthesize(text, voiceModel, outputFile)) {
+            std::cout << "Speech synthesis completed successfully\n";
+            return 0;
+        } else {
+            std::cout << "Speech synthesis failed\n";
+            return 1;
+        }
     } else {
         std::cout << "Unknown command: " << command << "\n";
         showUsage();

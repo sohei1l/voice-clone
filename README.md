@@ -20,8 +20,8 @@ Lightweight C++ voice cloning CLI that creates personalized text-to-speech from 
 # Train compact voice model from features
 ./echotwin train [mel.npy] [f0.npy] [voice.vec]
 
-# Generate speech (coming soon)
-./echotwin say "Hello world"
+# Generate speech with cloned voice
+./echotwin say "Hello world" [voice.vec] [output.wav]
 ```
 
 ## Build

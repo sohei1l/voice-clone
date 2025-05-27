@@ -27,6 +27,7 @@ add_executable(echotwin
     src/audio_recorder.cpp
     src/feature_extractor.cpp
     src/voice_trainer.cpp
+    src/speech_synthesizer.cpp
 )
 
 target_include_directories(echotwin PRIVATE 
